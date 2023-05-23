@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from "react"
+
 const fields = [
   {
     name: "email",
@@ -16,6 +18,16 @@ const fields = [
 ]
 
 const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setUser((prev) => ({ ...prev, [name]: value }))
+  }
+
   return (
     <form className="flex flex-col space-y-4">
       {fields.map((field) => (
@@ -23,6 +35,8 @@ const Login = () => {
           className="border border-gray-300 rounded-md p-2 text-gray-700"
           key={field.name}
           {...field}
+          value={user[field.name as keyof typeof user]}
+          onChange={handleChange}
         />
       ))}
       <button
