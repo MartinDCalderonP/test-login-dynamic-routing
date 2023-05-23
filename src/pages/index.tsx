@@ -1,8 +1,19 @@
-import Image from "next/image"
 import { Inter } from "next/font/google"
+import Login from "@/components/Login"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default function Home() {
-  return <main className={inter.className}>Home</main>
+const Home = () => {
+  return (
+    <main
+      className={
+        inter.className +
+        " flex flex-col items-center justify-center min-h-screen py-2"
+      }
+    >
+      <Login />
+    </main>
+  )
 }
+
+export default Home
