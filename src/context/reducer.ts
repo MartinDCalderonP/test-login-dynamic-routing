@@ -14,7 +14,7 @@ export const initialState = {
 export type Action = {
   type: string
   payload: {
-    user: User
+    email: string
     password: string
   }
 }
@@ -28,7 +28,10 @@ export const reducer = (state: State, action: Action): State => {
     case actionTypes.SET_USER:
       return {
         ...state,
-        user: action.payload.user
+        user: {
+          email: action.payload.email,
+          password: action.payload.password
+        }
       }
     default:
       return state
