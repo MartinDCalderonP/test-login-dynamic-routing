@@ -15,19 +15,14 @@ type Context = {
 const UserContext = createContext<Context>({} as Context)
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const setUserFromLocalStorage = () => {
-    if (typeof window === "undefined") return initialState
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
     const storagedUser = window.localStorage.getItem("user")
     const currentUser = storagedUser ? JSON.parse(storagedUser) : initialState
-    return currentUser
-  }
 
-  const [state, dispatch] = useReducer(reducer, setUserFromLocalStorage())
-
-  useEffect(
-    () => window.localStorage.setItem("user", JSON.stringify(state)),
-    [state]
-  )
+    dispatch({ type: "SET_USER", payload: currentUser })
+  }, [])
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>
