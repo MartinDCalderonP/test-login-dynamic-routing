@@ -40,8 +40,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (!state.user) return
-
+    if (!state.user?.email) return
     router.push(`/${state.user.email.split("@")[0]}`)
   }, [router, state.user])
 
