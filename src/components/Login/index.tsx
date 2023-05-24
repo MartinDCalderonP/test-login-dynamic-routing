@@ -37,6 +37,7 @@ const Login = () => {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch({ type: actionTypes.SET_USER, payload: user })
+    window.localStorage.setItem("user", JSON.stringify(user))
   }
 
   useEffect(() => {
