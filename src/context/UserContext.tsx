@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, useReducer } from "react"
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer
+} from "react"
 import { reducer, State, initialState, Action } from "./reducer"
 
 type Context = {
@@ -9,7 +15,19 @@ type Context = {
 const UserContext = createContext<Context>({} as Context)
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const setUserFromLocalStorage = () => {
+    if (typeof window === "undefined") return initialState
+    const storagedUser = window.localStorage.getItem("user")
+    const currentUser = storagedUser ? JSON.parse(storagedUser) : initialState
+    return currentUser
+  }
+
+  const [state, dispatch] = useReducer(reducer, setUserFromLocalStorage())
+
+  useEffect(
+    () => window.localStorage.setItem("user", JSON.stringify(state)),
+    [state]
+  )
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>
