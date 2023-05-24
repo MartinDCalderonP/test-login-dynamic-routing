@@ -1,9 +1,12 @@
 import PrivateAdminRoute from "@/components/PrivateAdminRoute"
+import PageWrapper from "@/components/PageWrapper"
 
 const AdminPage = () => {
   return (
     <PrivateAdminRoute>
-      <div>Admin Page</div>
+      <PageWrapper>
+        Admin Page
+      </PageWrapper>
     </PrivateAdminRoute>
   )
 }

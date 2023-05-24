@@ -1,9 +1,10 @@
 import PrivateUserRoute from "@/components/PrivateUserRoute"
+import PageWrapper from "@/components/PageWrapper"
 
 const UserPage = () => {
   return (
     <PrivateUserRoute>
-      <div>User Page</div>
+      <PageWrapper>User Page</PageWrapper>
     </PrivateUserRoute>
   )
 }
