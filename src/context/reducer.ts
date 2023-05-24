@@ -38,7 +38,7 @@ export const reducer = (state: State, action: Action): State => {
       }
     case actionTypes.REMOVE_USER:
       return {
-        ...state
+        ...initialState
       }
     default:
       return state
