@@ -12,8 +12,8 @@ const PrivateAdminRoute = ({ children }: PrivateAdminRouteProps) => {
   const isAdmin = state.user?.email === "admin"
 
   useEffect(() => {
-    if (!state.user || !isAdmin) router.push("/")
-  }, [router, state.user, isAdmin])
+    if (!isAdmin) router.push("/")
+  }, [router, isAdmin])
 
   return isAdmin ? <>{children}</> : null
 }

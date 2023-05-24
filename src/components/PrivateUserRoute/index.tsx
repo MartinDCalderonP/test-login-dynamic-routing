@@ -12,8 +12,8 @@ const PrivateUserRoute = ({ children }: PrivateUserRouteProps) => {
   const isUser = state.user?.email === "user"
 
   useEffect(() => {
-    if (!state.user || !isUser) router.push("/")
-  }, [router, state.user, isUser])
+    if (!isUser) router.push("/")
+  }, [router, isUser])
 
   return isUser ? <>{children}</> : null
 }
